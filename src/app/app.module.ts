@@ -21,6 +21,8 @@ import { environment } from 'src/environments/environment';
 import { AuthService } from './auth.service';
 import { AuthGuard } from './auth-guard.service';
 import { Subscription } from 'rxjs';
+import { AdminGuard } from './admin-guard.service';
+import { UserService } from './user.service';
 
 @NgModule({
   declarations: [
@@ -51,15 +53,17 @@ import { Subscription } from 'rxjs';
       { path: 'order-success', component: OrderSuccessComponent, canActivate: [AuthGuard]},
       { path: 'my/orders', component: MyOrdersComponent, canActivate: [AuthGuard]},
 
-      { path: 'admin/products', component: AdminProductsComponent, canActivate: [AuthGuard]},
-      { path: 'admin/orders', component: AdminOrdersComponent, canActivate: [AuthGuard]},
+      { path: 'admin/products', component: AdminProductsComponent, canActivate: [AuthGuard, AdminGuard]},
+      { path: 'admin/orders', component: AdminOrdersComponent, canActivate: [AuthGuard, AdminGuard]},
       // { path: '**', component: NotFoundComponent },
     ]),
     NgbModule.forRoot(),
   ],
   providers: [
     AuthService,
-    AuthGuard
+    AuthGuard,
+    AdminGuard,
+    UserService
   ],
   bootstrap: [AppComponent]
 })
