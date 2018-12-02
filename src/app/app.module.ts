@@ -18,6 +18,7 @@ import { AdminProductsComponent } from './admin/admin-products/admin-products.co
 import { AdminOrdersComponent } from './admin/admin-orders/admin-orders.component';
 import { LoginComponent } from './login/login.component';
 import { environment } from 'src/environments/environment';
+import { AuthService } from './auth.service';
 
 @NgModule({
   declarations: [
@@ -52,7 +53,9 @@ import { environment } from 'src/environments/environment';
     ]),
     NgbModule.forRoot(),
   ],
-  providers: [],
+  providers: [
+    AuthService,
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
